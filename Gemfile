@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.3'
 
 group :development do 
-  gem 'thin'
+#  gem 'thin'
   gem 'sqlite3'
   gem 'quiet_assets'
 end
