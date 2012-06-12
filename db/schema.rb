@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(:version => 20120611231744) do
     t.text     "details"
     t.datetime "created_at",      :null => false
     t.datetime "updated_at",      :null => false
-    t.boolean  "complete"
     t.string   "image"
     t.boolean  "complete_status"
   end
