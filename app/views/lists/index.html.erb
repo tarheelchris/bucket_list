@@ -2,14 +2,14 @@
 <ul>
   <% @current_user.lists.each do |list| %>
   <li>
-    <%= link_to list.title, list_items_url(list), :id => "ListTitle" %> | 
+    <%= link_to list.title, list_items_url(list) %> | 
     <%= link_to 'Edit', edit_list_url(list) %> | 
     <%= link_to 'Delete', list, confirm: 'Are you sure?', method: :delete %>
    <% end %>
   </li>
 </ul>
 
-<%= link_to 'New List', new_list_path %>
+<%= link_to 'Create a new List', new_list_path, :class => "btn" %>
 
 <% else %>
 

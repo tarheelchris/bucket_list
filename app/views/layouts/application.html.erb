@@ -1,44 +1,49 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Just Buck It</title>
+  <title>justbuckit.com</title>
+ <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js" type="text/javascript"></script>
+  <![endif]-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <div class ="container">
 <body>
-  <header>
-      <h1><%= link_to "My Bucket List", root_url %></h1>
-	    <ul>
-		      <% if @current_user %>
-		      <li class="btn"><%= link_to "#{@current_user.first_name} #{@current_user.last_name}", user_url(@current_user) %></li>
-		      <li class="btn"><%= link_to "Sign Out", sign_out_url %></li>
-		      <% else %>
-		      <li><%= link_to "Sign In", new_session_url %></li>
-			    <li><%= link_to "Sign Up", new_user_url %></li>
-			    <% end %>
-		  </ul>
-	</header>
+ 	 <header>
+	    <h1><%= link_to "JustBuckIt", root_url %></h1>
+			<nav>
+			<ul>
+			      <% if @current_user %>
+			      <li ><%= link_to "#{@current_user.first_name} #{@current_user.last_name}", user_url(@current_user) %></li>
+			      <li><%= link_to "Sign Out", sign_out_url %></li>
+			      <% else %>
+			      <li><%= link_to "Sign In", new_session_url %></li>
+				    <li><%= link_to "Sign Up", new_user_url %></li>
+				    <% end %>
+			</ul>
+			</nav>
+		</header>
 
   <% if flash[:notice].present? %>
 			<p id="notice"><%= notice %></p>
 	<% end %>
 			
 <%= yield %>	
-<div class="clear"></div>
-
-</div>
-</body>
 
 <footer>
-    &copy;2012 Buck.it "Add what you want to do and just buck it!"
-    	<ul>
-        <li><%= link_to "Home", root_url %></li>
-  		  <li><a href="#">Team</a></li>
+			&copy;2012 justbuckit.com 
+			<ul>
+        <li><%= link_to "Home", root_url %> | </li>
+  		  <li><a href="#">Team</a> | </li> 
   		  <li><a href="#">About</a></li>
       </ul>
 </footer>
 
+</body>
+</div>
+</div>
 </html>

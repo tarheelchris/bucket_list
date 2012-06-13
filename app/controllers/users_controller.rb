@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   # GET /users
   # GET /users.json
+  
+  # need to create a method that prevents a user from viewing and editing other people's profiles; 
+  # below only works for lists
+  # before_filter :require_correct_user, :except => [:new, :create, :show]
+  
   def index
     @users = User.all
 
