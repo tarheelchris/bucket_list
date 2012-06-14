@@ -19,7 +19,6 @@ class UsersController < ApplicationController
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
-
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -30,6 +29,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     @user = User.new
+    session[:uid] = @user.id
 
     respond_to do |format|
       format.html # new.html.erb
@@ -46,6 +46,7 @@ class UsersController < ApplicationController
   # POST /users.json
   def create
     @user = User.new(params[:user])
+    
     # @list = @user
     respond_to do |format|
       if @user.save

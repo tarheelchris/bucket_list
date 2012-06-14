@@ -1,0 +1,7 @@
+- homepage: broken images show up as broken links
+- automatically upload an image if no image uploaded or broken image
+- as soon as you sign up, you are logged in and directs you to list#index
+- remove ability to access users#index, users#show, if access a page for a user that doesn't exist or not authorized to view, redirect to homepage with notice to sign up or log in
+
+Done
+- hide password during sign up enter
