@@ -1,6 +1,5 @@
 class ItemsController < ApplicationController
   
-  
   # GET /items
   # GET /items.json
   def index
@@ -45,6 +44,7 @@ class ItemsController < ApplicationController
   def create
     @list = List.find(params[:list_id])
     @item = Item.new(params[:item])
+    @item.count = 0
     @list.items << @item
     respond_to do |format|
       if @item.save

@@ -22,9 +22,15 @@
       <td></td>
     <% end %>
     
-    <!-- <%# if item.complete_status == "true" %>
-    <td><%#= link_to item.title.upcase, list_item_url(:list_id => params[:list_id], :id => item.id) %></td> -->
-    <%# else %>
+		<% if item.votes.find_by_user_id(@current_user.id)%>
+		<td><%= item.count %><%= button_to "downvote", vote_url(:id => item.votes.find_by_user_id(@current_user.id)), method: :delete %></td>
+		<% else %>
+		<td><%= item.count %><%= button_to "upvote", votes_url(:id => item.id), method: :post %></td>
+		<% end %>
+		
+    <!-- <%# if item.complete_status == true %>
+            <td><del><%#= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></del></td>
+        <%# else %> -->
     <td><%= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></td>
     <%# end %>
     <!-- <td><%#= item.details %></td> -->
