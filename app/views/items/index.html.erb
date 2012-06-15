@@ -1,48 +1,102 @@
 <!-- <h1><%#= @current_user.first_name.capitalize %>'s Bucket List</h1> -->
 
 <div class = "signuptitle">
-<%= @current_user.lists.find(params[:list_id]).title %> Bucket List
+  <%= @current_user.lists.find(params[:list_id]).title %> Bucket List
 </div>
 
-<table>
-  <tr>
-    <th></th>
-    <!-- <th>Title</th> -->
-    <!-- <th>Details</th> -->
-    <!-- <th>Status</th> -->
-    <th></th>
-    <th></th>
-  </tr>
+  <table>
+    <tr>
+      <th>Image</th>
+      <th>Vote Count</th>
+      <th></th>
+      <th>Title</th>
+    <!-- <th>Details</th>
+    <th>Status</th> -->
+      <th></th>
+      <th></th>
+    </tr>
 
-<% @current_user.lists.find(params[:list_id]).items.each do |item| %>
-  <tr>
-    <% if item.image_url.to_s.present? %>
-      <td><%= image_tag item.image_url.to_s %></td>
-    <% else %>
-      <td></td>
-    <% end %>
+      <% @current_user.lists.find(params[:list_id]).items.each do |item| %>
+        <tr>
+          <% if item.complete_status == false %>
+            <% if item.image_url.to_s.present? %>
+              <td><%= image_tag item.image_url.to_s %></td>
+            <% else %>
+              <td></td>
+            <% end %>
     
-		<% if item.votes.find_by_user_id(@current_user.id)%>
-		<td><%= item.count %><%= button_to "downvote", vote_url(:id => item.votes.find_by_user_id(@current_user.id)), method: :delete %></td>
-		<% else %>
-		<td><%= item.count %><%= button_to "upvote", votes_url(:id => item.id), method: :post %></td>
-		<% end %>
+		        <% if item.votes.find_by_user_id(@current_user.id)%>
+		          <td><%= item.count %></td>
+		          <td><%= link_to "downvote", vote_url(:id => item.votes.find_by_user_id(@current_user.id)), method: :delete %></td>
+		        <% else %>
+		          <td><%= item.count %></td>
+		          <td><%= link_to "upvote", votes_url(:id => item.id), method: :post %></td>
+		        <% end %>
 		
-    <!-- <%# if item.complete_status == true %>
-            <td><del><%#= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></del></td>
-        <%# else %> -->
-    <td><%= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></td>
-    <%# end %>
+           <%# if item.complete_status == true %>
+            <!-- <td><del><%#= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></del></td> -->
+          <%# else %>
+            <td><%= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></td>
+          <%# end %>
+          
     <!-- <td><%#= item.details %></td> -->
     <!-- <td><%#= link_to item.complete_status.to_s %></td> -->
     
-    <td><%= link_to 'Edit', edit_list_item_url(:list_id => params[:list_id] , :id => item.id) %></td>
-    <td><%= link_to 'Delete', list_item_url(:list_id => params[:list_id], :id => item.id), confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-  <% end %>
+            <td><%= link_to 'Edit | ', edit_list_item_url(:list_id => params[:list_id] , :id => item.id) %></td> 
+            <td><%= link_to '| Delete', list_item_url(:list_id => params[:list_id], :id => item.id), confirm: 'Are you sure?', method: :delete %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </table>   
+  
+<div class = "signuptitle">  
+  <h1>Completed Bucket List </h1>>
+</div>
 
-</table>
+  <table>
+     <tr>
+       <th>Image</th>
+       <th>Vote Count</th>
+       <th></th>
+       <th>Title</th>
+     <!-- <th>Details</th>
+     <th>Status</th> -->
+       <th></th>
+       <th></th>
+     </tr>
+     
+   <% @current_user.lists.find(params[:list_id]).items.each do |item| %> 
+       <tr>
+         <% if item.complete_status == true %>
+           
+              <% if item.image_url.to_s.present? %>
+                <td><%= image_tag item.image_url.to_s %></td>
+              <% else %>
+                <td></td>
+              <% end %>
+  
+	            <% if item.votes.find_by_user_id(@current_user.id)%>
+	              <td><%= item.count %></td>
+	              <td><%= link_to "downvote", vote_url(:id => item.votes.find_by_user_id(@current_user.id)), method: :delete %></td>
+	            <% else %>
+	              <td><%= item.count %></td>
+	              <td><%= link_to "upvote", votes_url(:id => item.id), method: :post %></td>
+	            <% end %>
+	
+              <td><del><%= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></del></td>
+              <td><%= link_to 'Edit | ', edit_list_item_url(:list_id => params[:list_id] , :id => item.id) %></td> 
+              <td><%= link_to '| Delete', list_item_url(:list_id => params[:list_id], :id => item.id), confirm: 'Are you sure?', method: :delete %></td>
+             
+        <% end %>
+      </tr>
+  <% end %>
+  
+
+
+  </table>
 
 <br>
 	<%= link_to 'Add New Item', new_list_item_url %> |
 	<%= link_to 'Return to lists', root_url %>
+	
+	
