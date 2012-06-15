@@ -9,8 +9,8 @@ MahBucketList::Application.routes.draw do
   
   resources :votes, :only => [:create, :destroy]
   
-  get '/users/index' => 'users#new'
-  get '/users/' => 'users#new'
+  get '/users/index' => 'lists#index'
+  get '/users/' => 'lists#index'
   
   resources :users, :except => :index
   

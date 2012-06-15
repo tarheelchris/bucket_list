@@ -14,10 +14,10 @@ class Item < ActiveRecord::Base
   #     end
   # end
   
-  def item_complete 
-    new_list = List.new
-    item(params[:id]).list_id = new_list.id
-  end
+  # def item_complete 
+  #    new_list = List.new
+  #    item(params[:id]).list_id = new_list.id
+  #  end
   
   
 end

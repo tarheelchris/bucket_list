@@ -4,7 +4,7 @@ class UsersController < ApplicationController
   
   # need to create a method that prevents a user from viewing and editing other people's profiles; 
   # below only works for lists
-  # before_filter :require_correct_user, :except => [:new, :create, :show]
+  #before_filter :require_correct_user, :except => [:new, :create, :show]
   
   def index
     @users = User.all
@@ -18,7 +18,9 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.json
   def show
-    @user = User.find(params[:id])
+    @user = User.find_by_id(params[:id])
+    
+    redirect_to user_url(:id => session[:uid]) and return unless @user && @user.id == session[:uid]
     respond_to do |format|
       format.html # show.html.erb
       format.json { render json: @user }
@@ -28,9 +30,13 @@ class UsersController < ApplicationController
   # GET /users/new
   # GET /users/new.json
   def new
-    @user = User.new
-    session[:uid] = @user.id
-
+    if session[:uid]
+      redirect_to root_url
+      return
+    else
+      @user = User.new
+    end
+    
     respond_to do |format|
       format.html # new.html.erb
       format.json { render json: @user }
@@ -50,7 +56,8 @@ class UsersController < ApplicationController
     # @list = @user
     respond_to do |format|
       if @user.save
-        format.html { redirect_to root_url, notice: 'User was successfully created.' }
+        session[:uid] = @user.id
+        format.html { redirect_to root_path, notice: 'User was successfully created.' }
         format.json { render json: @user, status: :created, location: @user }
       else
         format.html { render action: "new" }
