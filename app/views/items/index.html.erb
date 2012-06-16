@@ -1,21 +1,23 @@
-<!-- <h1><%#= @current_user.first_name.capitalize %>'s Bucket List</h1> -->
 
-<div class = "signuptitle">
-  <%= @current_user.lists.find(params[:list_id]).title %> Bucket List
+<%- model_class = Item.new.class -%>
+<div class="page-header">
+  <h1><%= @current_user.first_name.capitalize %>'s Bucket List</h1>
 </div>
 
-  <table>
-    <tr>
-      <th>Image</th>
-      <th>Vote Count</th>
-      <th></th>
-      <th>Title</th>
-    <!-- <th>Details</th>
-    <th>Status</th> -->
-      <th></th>
-      <th></th>
-    </tr>
+  <h2><%= @current_user.lists.find(params[:list_id]).title %> Bucket List</h2>
 
+<table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Image</th>
+        <th>Vote Count</th>
+        <th>Vote Button</th>
+        <th>Title</th>
+        <th></th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
       <% @current_user.lists.find(params[:list_id]).items.each do |item| %>
         <tr>
           <% if item.complete_status == false %>
@@ -33,70 +35,54 @@
 		          <td><%= link_to "upvote", votes_url(:id => item.id), method: :post %></td>
 		        <% end %>
 		
-           <%# if item.complete_status == true %>
-            <!-- <td><del><%#= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></del></td> -->
-          <%# else %>
-            <td><%= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></td>
-          <%# end %>
-          
-    <!-- <td><%#= item.details %></td> -->
-    <!-- <td><%#= link_to item.complete_status.to_s %></td> -->
-    
-            <td><%= link_to 'Edit | ', edit_list_item_url(:list_id => params[:list_id] , :id => item.id) %></td> 
-            <td><%= link_to '| Delete', list_item_url(:list_id => params[:list_id], :id => item.id), confirm: 'Are you sure?', method: :delete %></td>
+              <td><%= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></td>
+              
+              <td>
+              <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_list_item_url(:list_id => params[:list_id] , :id => item.id), :class => 'btn btn-mini' %>
+              <%= link_to t('.destroy', :default => t("helpers.links.destroy")), list_item_url(:list_id => params[:list_id] , :id => item.id), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger' %>
+              </td>
         <% end %>
       </tr>
     <% end %>
-  </table>   
+  </tbody>
+</table>   
   
-<div class = "signuptitle">  
-  <h1>Completed Bucket List </h1>>
-</div>
 
-  <table>
-     <tr>
-       <th>Image</th>
-       <th>Vote Count</th>
-       <th></th>
-       <th>Title</th>
-     <!-- <th>Details</th>
-     <th>Status</th> -->
-       <th></th>
-       <th></th>
-     </tr>
-     
-   <% @current_user.lists.find(params[:list_id]).items.each do |item| %> 
-       <tr>
-         <% if item.complete_status == true %>
-           
+  <h2>Completed Bucket List </h2>
+
+  <table class="table table-striped">
+      <thead>
+        <tr>
+          <th>Image</th>
+          <th>Title</th>
+          <th></th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @current_user.lists.find(params[:list_id]).items.each do |item| %>
+          <tr>
+            <% if item.complete_status == true %>
               <% if item.image_url.to_s.present? %>
                 <td><%= image_tag item.image_url.to_s %></td>
               <% else %>
                 <td></td>
               <% end %>
-  
-	            <% if item.votes.find_by_user_id(@current_user.id)%>
-	              <td><%= item.count %></td>
-	              <td><%= link_to "downvote", vote_url(:id => item.votes.find_by_user_id(@current_user.id)), method: :delete %></td>
-	            <% else %>
-	              <td><%= item.count %></td>
-	              <td><%= link_to "upvote", votes_url(:id => item.id), method: :post %></td>
-	            <% end %>
-	
-              <td><del><%= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></del></td>
-              <td><%= link_to 'Edit | ', edit_list_item_url(:list_id => params[:list_id] , :id => item.id) %></td> 
-              <td><%= link_to '| Delete', list_item_url(:list_id => params[:list_id], :id => item.id), confirm: 'Are you sure?', method: :delete %></td>
-             
-        <% end %>
-      </tr>
-  <% end %>
-  
 
+                <td><del><%= link_to item.title, list_item_url(:list_id => params[:list_id], :id => item.id) %></del></td>
 
-  </table>
+                <td>
+                <%= link_to t('.edit', :default => t("helpers.links.edit")), edit_list_item_url(:list_id => params[:list_id] , :id => item.id), :class => 'btn btn-mini' %>
+                <%= link_to t('.destroy', :default => t("helpers.links.destroy")), list_item_url(:list_id => params[:list_id] , :id => item.id), :method => :delete, :confirm => t('.confirm', :default => t("helpers.links.confirm", :default => 'Are you sure?')), :class => 'btn btn-mini btn-danger' %>
+                </td>
+          <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>   
 
 <br>
-	<%= link_to 'Add New Item', new_list_item_url %> |
+  <%= link_to t('.new', :default => t("helpers.links.new")), new_list_item_url, :class => 'btn btn-primary' %>
 	<%= link_to 'Return to lists', root_url %>
 	
 	
