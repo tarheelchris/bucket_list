@@ -7,8 +7,8 @@
   <![endif]-->
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
-	<link rel="stylesheet" href="../css/bootstrap.css">
-	<link rel="stylesheet" href="../css/font-awesome.css">
+	<link rel="stylesheet" href="bootstrap.css">
+	<link rel="stylesheet" href="font-awesome.css">
   <%= csrf_meta_tags %>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -24,11 +24,15 @@
                     			<li ><%= link_to "#{@current_user.first_name} #{@current_user.last_name}", user_url(@current_user) %></li>
                     			<li><%= link_to "Sign Out", sign_out_url %></li>
                     		<% else %>
-                    			<li><%= link_to "Sign In", new_session_url %></li>
-                    			<li><%= link_to "Sign Up", new_user_url %></li>
+                    			<li>
+																<form class ="form-inline">
+																<input type="text" class="input-small" placeholder="Email"> 
+																<input type="password" class="input-small" placeholder="Passsord">
+																<button type="submit" class="btn">Sign In</button>
+													</li>
                     		<% end %>
-           
-
+           <%#= button_to "Sign In", new_session_url, :class => "btn" %>
+												
           
             </div>
          	
@@ -44,13 +48,12 @@
   </br>
   </br>
   <div class="row">
-    <div class="span9"><%= yield %></div>
+    <div class="span9">
+			<%= yield %>
+		</div>
     <div class="span3">
-      
       <%= yield(:side_bar) %>
-       
-        
-      </div>
+    </div>
   </div>
 </div>
 
