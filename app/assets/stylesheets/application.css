@@ -4982,6 +4982,13 @@ a.badge:hover {
   visibility: hidden;
 }
 
+.carousel .item > img {
+  display: block;
+	 width: 100%;
+  line-height: 1;
+}
+
+
 ul .homepagetext li {
-	
+
 }
