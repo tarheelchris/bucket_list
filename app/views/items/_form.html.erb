@@ -6,7 +6,7 @@
 </div>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
  
@@ -16,9 +16,13 @@
   </div> -->
 
   <p>
-    <%= f.file_field :image %><br />
+    <%= f.file_field :image %>
   </p>
   
+  <div class="field">
+ 
+     <%= f.hidden_field :complete_status, :value => false %>
+   </div>
 
   <div class="actions">
     <%= f.submit %>
