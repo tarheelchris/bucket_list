@@ -534,7 +534,7 @@ ol ul {
 }
 
 ul {
-  list-style: disc;
+  list-style: none;
 }
 
 ol {
@@ -4980,4 +4980,10 @@ a.badge:hover {
 
 .invisible {
   visibility: hidden;
+}
+
+ul .homepagetext li {
+	
+	
+	
 }
