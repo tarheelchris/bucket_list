@@ -1,21 +1,22 @@
 <%= form_for(@item, :url => { :action => "create" }, :html => {:multipart => true}) do |f| %>
 
 
-<div class = "signuptitle">
-<%= @current_user.lists.find(params[:list_id]).title %> Bucket List
-</div>
+
+<h1><%= @current_user.lists.find(params[:list_id]).title %> Bucket List</h1>
+</br>
 
   <div class="field">
-    <%= f.label :title %>
+    <%= f.label "What's the goal you're trying to accomplish" %>
     <%= f.text_field :title %>
   </div>
  
  	<!-- <div class="field">
-    <%= f.label :details %><br />
+    <%= f.label :details %>
     <%= f.text_area :details %>
   </div> -->
 
   <p>
+    <h2><%= f.label "Attach an sweet picture" %></h2>
     <%= f.file_field :image %>
   </p>
   
