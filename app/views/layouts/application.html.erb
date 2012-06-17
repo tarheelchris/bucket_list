@@ -12,7 +12,7 @@
 </head>
 
 <body>
-  
+
 <div class="navbar navbar-fixed-top">
     <div class="navbar-inner">
       <div class="container">
@@ -41,6 +41,9 @@
   <div class ="container">
     </br>
     </br>
+		<% if flash[:notice].present? %>
+			<p id = "notice" ><%= notice %></p>
+		<% end %>
     </br>
     <div class="row">
       <div class="span9"><%= yield %></div>
