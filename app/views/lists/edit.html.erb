@@ -4,3 +4,23 @@
 
 <%= link_to 'Show', @list %> |
 <%= link_to 'Back', lists_path %>
+
+<% content_for(:side_bar) do %>
+</br>
+</br>
+</br>
+</br>
+<h1>Suggested lists </h1>
+</br>
+<ul>
+  <li>Before I Kick the Bucket</li>
+  <li>To Do Before I Turn 30</li>
+  <li>Before I Leave Chicago</li>
+  <li>Will Never Tell Parents</li>
+  <li>Restaurant Bucket List</li>
+  <li>Things to Eat</li>
+  <li>Things to Learn</li>
+  <li>Books to Read</li>
+  <li>Places to Take a Date</li>
+</ul>
+<% end %>

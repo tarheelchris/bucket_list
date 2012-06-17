@@ -1,31 +1,55 @@
-<div class='signuptitle'><%= @current_user.lists.find(params[:list_id]).title %> Bucket List
-</div>
+<h1><%= @current_user.lists.find(params[:list_id]).title %> Bucket List</h1>
+
 
 <%= form_for(@item, :url => list_item_url(:list_id => params[:list_id],:id => params[:id])) do |f| %>
 
   <div class="field">
-    <%= f.label :title %><br />
+    <%= f.label :title %>
     <%= f.text_field :title %>
   </div>
-  <!-- <div class="field">
-    <%= f.label :details %><br />
-    <%= f.text_area :details %>
-  </div> -->
   <div class="field">
-     <%= f.label :complete_status %><br />
+    <%= f.label :details %>
+    <%= f.text_area(:details)%>
+  </div>
+  </br>
+  <div class="field">
+     <%= f.label "Check box below if goal has been completed" %>
      <%= f.check_box :complete_status %>
    </div>
-  
+  </br>
   <p>
-    <%= f.label :image %><br />
-    <%= f.file_field :image %><br />
+    <%= f.label "Edit your sweet image" %>
+    <%= f.file_field :image %>
   </p>
   
 
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+
+    <%= f.submit "Save Changes" %>
+
 <% end %>
 
-
 <%= link_to 'Cancel', list_items_url %>
+
+<% content_for(:side_bar) do %>
+  </br>
+  </br>
+  </br>
+  </br>
+  <h1>Suggested Goals</h1>
+  </br>
+  <ul>
+    <li>Visit Every Museum in Chicago</li>
+    <li>Build an Exoskeleton</li>
+    <li>Watch All the Star Wars Movies in a Row</li>
+    <li>Fly a Jet Pack</li>
+    <li>See the Seven Wonders of the World</li>
+    <li>Surf the Great Barrier Reef</li>
+    <li>Run With the Bull in Pamplona, Spain</li>
+    <li>Watch the IMDB Top 500 Movies of All Time</li>
+    <li>Hike Machu Picchu</li>
+    <li>Run a Marathon</li>
+    <li>Teach Yourself the Guitar</li>
+    <li>Bike Over the Golden Gate Bridge</li>
+    <li>Drink Beer at Oktoberfest in Munic</li>
+  </ul>
+<% end %>

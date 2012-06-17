@@ -8,6 +8,7 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <link rel="shortcut icon" href="favicon.ico"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
@@ -36,22 +37,32 @@
     </div>
   </div>
   
-  
-<div class ="container">
-  </br>
-  </br>
-  </br>
-  <div class="row">
-    <div class="span9"><%= yield %></div>
-    <div class="span3">
-      
-      <%= yield(:side_bar) %>
-       
-        
-      </div>
-  </div>
-</div>
+<div class="wrapper">
+  <div class ="container">
+    </br>
+    </br>
+    </br>
+    <div class="row">
+      <div class="span9"><%= yield %></div>
+      <div class="span3"> <%= yield(:side_bar) %></div>
+    </div>
 
+  <div class="footer-push">
+  
+    
+ 
+</div>  
+<footer class="footer">
+
+    <div class="container">
+      <hr>
+      <p>
+  	 Painstakingly hacked together by <a href="http://twitter.com/chriscliang">@chriscliang</a> and <a href="http://twitter.com/paulwuhoo">@paulwuhoo</a>. Special thanks to all of the mentors at <a href="http://codeacademy.org">Code Academy</a> for helping us along the way.
+  	</p>
+  	<p>Copyright 2012</p>
+  	</div>
+</footer>
+ 
 </body>
 </html>
   

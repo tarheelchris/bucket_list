@@ -16,7 +16,7 @@
   </div> -->
 
   <p>
-    <h2><%= f.label "Attach an sweet picture" %></h2>
+    <h2><%= f.label "Attach a sweet picture" %></h2>
     <%= f.file_field :image %>
   </p>
   
@@ -28,4 +28,28 @@
   <div class="actions">
     <%= f.submit %>
   </div>
+<% end %>
+
+<% content_for(:side_bar) do %>
+  </br>
+  </br>
+  </br>
+  </br>
+  <h1>Suggested Goals</h1>
+  </br>
+  <ul>
+    <li>Visit Every Museum in Chicago</li>
+    <li>Build an Exoskeleton</li>
+    <li>Watch All the Star Wars Movies in a Row</li>
+    <li>Fly a Jet Pack</li>
+    <li>See the Seven Wonders of the World</li>
+    <li>Surf the Great Barrier Reef</li>
+    <li>Run With the Bull in Pamplona, Spain</li>
+    <li>Watch the IMDB Top 500 Movies of All Time</li>
+    <li>Hike Machu Picchu</li>
+    <li>Run a Marathon</li>
+    <li>Teach Yourself the Guitar</li>
+    <li>Bike Over the Golden Gate Bridge</li>
+    <li>Drink Beer at Oktoberfest in Munich</li>
+  </ul>
 <% end %>
