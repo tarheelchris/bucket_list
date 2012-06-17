@@ -24,7 +24,7 @@ MahBucketList::Application.routes.draw do
   # put 'users/:user_id/update' => 'users#update'
   # delete 'users/:user_id' => 'users#destroy'
   
-  root to:  'lists#index'
+  root to:  'home#index'
   
 end
  

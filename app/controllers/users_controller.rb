@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   # GET /users/new.json
   def new
     if session[:uid]
-      redirect_to root_url
+      redirect_to lists_url
       return
     else
       @user = User.new
