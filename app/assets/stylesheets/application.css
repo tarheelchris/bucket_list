@@ -1,4 +1,4 @@
-/*!
+/*/*!
  * Bootstrap v2.0.4
  *
  * Copyright 2012 Twitter, Inc
@@ -534,7 +534,7 @@ ol ul {
 }
 
 ul {
-  list-style: disc;
+  list-style: none;
 }
 
 ol {
@@ -586,8 +586,7 @@ dd {
 hr {
   margin: 18px 0;
   border: 0;
-	color: #000;
-  border-top: 1px solid #dddddd;
+  border-top: 1px solid #eeeeee;
   border-bottom: 1px solid #ffffff;
 }
 
@@ -4983,10 +4982,13 @@ a.badge:hover {
   visibility: hidden;
 }
 
+.carousel .item > img {
+  display: block;
+	 width: 100%;
+  line-height: 1;
+}
 
 
+ul .homepagetext li {
 
-
-
-
-
+}

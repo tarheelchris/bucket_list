@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
     if List.find_by_id(params[:id])
       list = List.find_by_id(params[:id])
         if list.user != @current_user
-        redirect_to root_url, notice: "Nice Try"
+        redirect_to lists_url, notice: "Nice Try"
         end
     else
       redirect_to new_user_url, notice: "Bucketlist does not exist" 
