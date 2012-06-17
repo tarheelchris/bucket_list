@@ -3,9 +3,6 @@
 <% if @current_user %>
 <ul>
 </br>
-  <%= link_to 'Create a new List', new_list_path, :class => "btn btn-primary" %>
-</br>
-</br>
   <h1><%= @current_user.first_name %>'s Bucket Lists</h1>
   
 </br>
@@ -30,6 +27,7 @@
     </td>
   </tr>
   <% end %>
+
   </tbody>
 </table>
 
@@ -52,13 +50,14 @@
   </ul>
 
 <% end %>
+<%= link_to 'Create a new List', new_list_path, :class => "btn btn-primary" %>
+
+
 
 <% content_for(:side_bar) do %>
 </br>
-</br>
-</br>
-</br>
-<h1>Suggested lists </h1>
+
+<h2>Suggested lists </h2>
 </br>
 <ul>
   <li>Before I Kick the Bucket</li>

@@ -1,7 +1,5 @@
 <%= form_for(@item, :url => { :action => "create" }, :html => {:multipart => true}) do |f| %>
 
-
-
 <h1><%= @current_user.lists.find(params[:list_id]).title %> Bucket List</h1>
 </br>
 
@@ -31,11 +29,7 @@
 <% end %>
 
 <% content_for(:side_bar) do %>
-  </br>
-  </br>
-  </br>
-  </br>
-  <h1>Suggested Goals</h1>
+  <h2>Suggested Goals</h2>
   </br>
   <ul>
     <li>Visit Every Museum in Chicago</li>
